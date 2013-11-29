@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatUI.Xamarin.Android", "FlatUI.Xamarin.Android\FlatUI.Xamarin.Android.csproj", "{02B4553F-ADF4-4AED-89CD-8C605D3AFD63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Samples\Android\Sample\Sample.csproj", "{78B3367E-468D-4466-8D0C-85852E8874F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02B4553F-ADF4-4AED-89CD-8C605D3AFD63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02B4553F-ADF4-4AED-89CD-8C605D3AFD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02B4553F-ADF4-4AED-89CD-8C605D3AFD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02B4553F-ADF4-4AED-89CD-8C605D3AFD63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B3367E-468D-4466-8D0C-85852E8874F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B3367E-468D-4466-8D0C-85852E8874F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B3367E-468D-4466-8D0C-85852E8874F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B3367E-468D-4466-8D0C-85852E8874F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Samples\Android\Sample\Sample.csproj
+	EndGlobalSection
+EndGlobal
