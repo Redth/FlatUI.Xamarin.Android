@@ -113,9 +113,9 @@ namespace FlatUI
 			else 
 				SetTextColor(Android.Graphics.Color.White);
 
-//			var typeface = FlatUI.GetFont(Context, fontId, fontWeight);
-//			if (typeface != null)
-//				SetTypeface(typeface, Android.Graphics.TypefaceStyle.Normal);
+			var typeface = FlatUI.GetFont(Context, fontId, fontWeight);
+			if (typeface != null)
+				SetTypeface(typeface, Android.Graphics.TypefaceStyle.Normal);
 		}
 	}
 }

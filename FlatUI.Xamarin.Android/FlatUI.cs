@@ -123,7 +123,10 @@ namespace FlatUI
 						fontWeight = "extrabold.ttf";
 						break;
 				}
-				return Typeface.CreateFromAsset(context.Assets, "fonts/" + fontName + "_" + fontWeight);
+
+				var fname = fontName + "_" + fontWeight;
+
+				return Typeface.CreateFromAsset(context.Assets, fname);
 			}
 			return null;
 		}

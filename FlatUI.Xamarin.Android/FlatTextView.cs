@@ -105,9 +105,9 @@ namespace FlatUI
 
 			SetTextColor(txtColor);
 
-//			Typeface typeface = FlatUI.GetFont(Context, fontId, fontWeight);
-//			if (typeface != null)
-//				SetTypeface(typeface);
+			var typeface = FlatUI.GetFont(Context, fontId, fontWeight);
+			if (typeface != null)
+				SetTypeface(typeface);
 		}
 	}
 }

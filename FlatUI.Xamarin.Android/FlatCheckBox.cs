@@ -110,9 +110,9 @@ namespace FlatUI
 			SetPadding(size / 4 * 5, 0, 0, 0);
 			SetTextColor(theme.Color3);
 
-//			Typeface typeface = FlatUI.GetFont(Context, fontId, fontWeight);
-//			if (typeface != null) 
-//				SetTypeface(typeface);
+			var typeface = FlatUI.GetFont(Context, fontId, fontWeight);
+			if (typeface != null) 
+				SetTypeface(typeface);
 		}
 	}
 }

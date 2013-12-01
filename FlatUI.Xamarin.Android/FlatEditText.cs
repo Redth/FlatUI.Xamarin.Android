@@ -91,9 +91,9 @@ namespace FlatUI
 			if (textAppearance == 1) SetTextColor(theme.Color1);
 			else if (textAppearance == 2) SetTextColor(theme.Color4);
 
-//			Typeface typeface = FlatUI.GetFont(Context, fontId, fontWeight);
-//			if (typeface != null)
-//				SetTypeface(typeface);
+			var typeface = FlatUI.GetFont(Context, fontId, fontWeight);
+			if (typeface != null)
+				SetTypeface(typeface);
 		}
 	}
 }
