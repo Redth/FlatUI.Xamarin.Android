@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Android.App;
 using Android.Graphics.Drawables;
 using Android.Graphics;
@@ -16,8 +17,8 @@ namespace FlatUI
 		static FlatUI()
 		{
 			DefaultTheme = FlatTheme.Blood();
-			DefaultFontWeight = FlatUIFontWeight.Regular;
-			DefaultFontFamily = FlatUIFontFamily.Roboto;
+			DefaultFontWeight = FlatFontWeight.Regular;
+			DefaultFontFamily = FlatFontFamily.Roboto;
 		}
 
 		static Dictionary<string, FlatTheme> stockThemes = new Dictionary<string, FlatTheme>() {
@@ -36,6 +37,18 @@ namespace FlatUI
 		};
 
 		static Dictionary<string, FlatTheme> customThemes = new Dictionary<string, FlatTheme> ();
+
+		public static string[] GetThemeNames()
+		{
+			var names = new List<string> ();
+			names.AddRange (from kvp in stockThemes
+			               select kvp.Key);
+
+			names.AddRange (from kvp in customThemes
+				select kvp.Key);
+
+			return names.ToArray();
+		}
 
 		public static void RegisterCustomTheme(string name, FlatTheme theme)
 		{
@@ -68,8 +81,8 @@ namespace FlatUI
 		}
 
 		public static FlatTheme DefaultTheme { get; set; }
-		public static FlatUIFontWeight DefaultFontWeight { get; set; }
-		public static FlatUIFontFamily DefaultFontFamily { get;set; }
+		public static FlatFontWeight DefaultFontWeight { get; set; }
+		public static FlatFontFamily DefaultFontFamily { get;set; }
 
 		public static void SetActionBarTheme(Activity context, FlatTheme theme, bool dark)
 		{
@@ -131,7 +144,7 @@ namespace FlatUI
 			return null;
 		}
 
-		public enum FlatUIFontWeight
+		public enum FlatFontWeight
 		{
 			ExtraLight = 0,
 			Light = 1, 
@@ -140,14 +153,14 @@ namespace FlatUI
 			ExtraBold = 4
 		}
 
-		public enum FlatUITextAppearance
+		public enum FlatTextAppearance
 		{
 			None = 0,
 			Dark = 1,
 			Light = 2
 		}
 
-		public enum FlatUIFontFamily
+		public enum FlatFontFamily
 		{
 			DroidSans = 0,
 			OpenSans = 1,

@@ -156,17 +156,14 @@ namespace Sample
 			// aapt resource value: 0x7f04000c
 			public const int box = 2130968588;
 			
-			// aapt resource value: 0x7f040012
-			public const int button_block = 2130968594;
-			
 			// aapt resource value: 0x7f040013
-			public const int button_flat = 2130968595;
-			
-			// aapt resource value: 0x7f040015
-			public const int checkbox_unchecked_disabled = 2130968597;
+			public const int buttonBlock = 2130968595;
 			
 			// aapt resource value: 0x7f040014
-			public const int checkbox_unchecked_enabled = 2130968596;
+			public const int buttonFlat = 2130968596;
+			
+			// aapt resource value: 0x7f040015
+			public const int checkboxUncheckedEnabled = 2130968597;
 			
 			// aapt resource value: 0x7f040001
 			public const int dark = 2130968577;
@@ -175,7 +172,10 @@ namespace Sample
 			public const int darker = 2130968590;
 			
 			// aapt resource value: 0x7f040010
-			public const int edittext_flat = 2130968592;
+			public const int edittextFlat = 2130968592;
+			
+			// aapt resource value: 0x7f040011
+			public const int edittextFlat2 = 2130968593;
 			
 			// aapt resource value: 0x7f04000a
 			public const int extrabold = 2130968586;
@@ -195,14 +195,17 @@ namespace Sample
 			// aapt resource value: 0x7f040000
 			public const int none = 2130968576;
 			
+			// aapt resource value: 0x7f040016
+			public const int radioUncheckedDisabled = 2130968598;
+			
 			// aapt resource value: 0x7f040008
 			public const int regular = 2130968584;
 			
-			// aapt resource value: 0x7f040011
-			public const int seekbar = 2130968593;
+			// aapt resource value: 0x7f040012
+			public const int seekbar = 2130968594;
 			
-			// aapt resource value: 0x7f040016
-			public const int toggle_unchecked_enabled = 2130968598;
+			// aapt resource value: 0x7f040017
+			public const int toggleUncheckedEnabled = 2130968599;
 			
 			// aapt resource value: 0x7f04000d
 			public const int transparent = 2130968589;

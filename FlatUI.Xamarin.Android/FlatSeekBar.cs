@@ -29,6 +29,12 @@ namespace FlatUI
 			init(attrs);
 		}
 
+		public FlatTheme Theme
+		{
+			get { return theme; }
+			set { theme = value; init (null); }
+		}
+
 		void init(IAttributeSet attrs) 
 		{
 			if (attrs != null) 

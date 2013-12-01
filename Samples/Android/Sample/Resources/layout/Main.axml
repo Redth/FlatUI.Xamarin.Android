@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:flatui="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -8,25 +8,18 @@
 <!-- FlatEditText -->
 <!-- available attrs: fieldStyle, cornerRadius, textPadding, fontFamily, fontWeight, textAppearance -->
     <FlatUI.FlatEditText
-        android:id="@+id/edittext_flat"
+        android:id="@+id/edittextFlat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:fieldStyle="flat"
-        app:cornerRadius="3dip"
+        flatui:fieldStyle="flat"
+        flatui:cornerRadius="3dip"
         android:layout_margin="10dp" />
     <FlatUI.FlatEditText
-        android:id="@+id/edittext_flat"
+        android:id="@+id/edittextFlat2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:fieldStyle="box"
-        app:cornerRadius="3dip"
-        android:layout_margin="10dp" />
-    <FlatUI.FlatEditText
-        android:id="@+id/edittext_flat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:fieldStyle="transparent"
-        app:cornerRadius="3dip"
+        flatui:fieldStyle="box"
+        flatui:cornerRadius="3dip"
         android:layout_margin="10dp" />
 <!-- FlatSeekBar -->
 <!-- available attrs: none -->
@@ -39,45 +32,45 @@
 <!-- FlatButton -->
 <!-- available attrs: textApearance, textPadding, cornerRadius, isFullFlat, fontFamily, fontWeight -->
     <FlatUI.FlatButton
-        android:id="@+id/button_block"
+        android:id="@+id/buttonBlock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="Block"
-        app:textAppearance="light"
-        android:layout_margin="10dp" />
+        flatui:textAppearance="none" />
     <FlatUI.FlatButton
-        android:id="@+id/button_flat"
+        android:id="@+id/buttonFlat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="Full Flat"
-        app:isFullFlat="true"
-        app:textAppearance="light"
-        android:layout_margin="10dp" />
+        flatui:isFullFlat="true"
+        flatui:textAppearance="dark" />
 <!-- FlatCheckBox -->
 <!-- available attrs: cornerRadius, size, fontFamily, fontWeight -->
     <FlatUI.FlatCheckBox
-        android:id="@+id/checkbox_unchecked_enabled"
+        android:id="@+id/checkboxUncheckedEnabled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:size="20dip"
         android:text="unchecked enabled"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        flatui:size="20dip" />
 <!-- FlatRadioButton -->
 <!-- available attrs: size, fontFamily, fontWeight -->
     <FlatUI.FlatRadioButton
-        android:id="@+id/checkbox_unchecked_disabled"
+        android:id="@+id/radioUncheckedDisabled"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:size="20dip"
         android:text="unchecked disabled"
         android:enabled="false"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        flatui:size="20dip" />
 <!-- FlatToggleButton -->
 <!-- available attrs: size -->
     <FlatUI.FlatToggleButton
-        android:id="@+id/toggle_unchecked_enabled"
+        android:id="@+id/toggleUncheckedEnabled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:size="20dip"
-        android:layout_margin="10dp" />
+        android:layout_margin="10dp"
+        flatui:size="20dip" />
 </LinearLayout>
