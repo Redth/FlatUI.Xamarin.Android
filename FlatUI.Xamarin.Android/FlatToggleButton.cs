@@ -69,7 +69,7 @@ namespace FlatUI
 
 			// creating unchecked-enabled state drawable
 			var uncheckedEnabledFrontCore = new ShapeDrawable(new RoundRectShape(outerR, null, null));
-			uncheckedEnabledFrontCore.Paint.Color = theme.Color3;
+			uncheckedEnabledFrontCore.Paint.Color = theme.LightAccentColor;
 			var uncheckedEnabledFront = new InsetDrawable(uncheckedEnabledFrontCore, 5);
 
 			var uncheckedEnabledBack = new ShapeDrawable(new RoundRectShape(outerR, null, null));
@@ -81,11 +81,11 @@ namespace FlatUI
 
 			// creating checked-enabled state drawable
 			var checkedEnabledFrontCore = new ShapeDrawable(new RoundRectShape(outerR, null, null));
-			checkedEnabledFrontCore.Paint.Color = theme.Color3;
+			checkedEnabledFrontCore.Paint.Color = theme.LightAccentColor;
 			var checkedEnabledFront = new InsetDrawable(checkedEnabledFrontCore, 5);
 
 			ShapeDrawable checkedEnabledBack = new ShapeDrawable(new RoundRectShape(outerR, null, null));
-			checkedEnabledBack.Paint.Color = theme.Color4;
+			checkedEnabledBack.Paint.Color = theme.VeryLightAccentColor;
 			checkedEnabledBack.SetPadding(size / 2 * 5, 0, 0, 0);
 
 			Drawable[] d2 = {checkedEnabledBack, checkedEnabledFront};
@@ -105,7 +105,7 @@ namespace FlatUI
 
 			// creating checked-disabled state drawable
 			ShapeDrawable checkedDisabledFrontCore = new ShapeDrawable(new RoundRectShape(outerR, null, null));
-			checkedDisabledFrontCore.Paint.Color = theme.Color4;
+			checkedDisabledFrontCore.Paint.Color = theme.VeryLightAccentColor;
 			InsetDrawable checkedDisabledFront = new InsetDrawable(checkedDisabledFrontCore, 5);
 
 			ShapeDrawable checkedDisabledBack = new ShapeDrawable(new RoundRectShape(outerR, null, null));
@@ -117,7 +117,7 @@ namespace FlatUI
 
 			SetPadding(0, padding, 0, padding);
 
-			PaintDrawable paintDrawable = new PaintDrawable(theme.Color2);
+			PaintDrawable paintDrawable = new PaintDrawable(theme.BackgroundColor);
 			paintDrawable.SetIntrinsicHeight(size);
 			paintDrawable.SetIntrinsicWidth(size);
 			paintDrawable.SetPadding(size, 0, 0, 0);

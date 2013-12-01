@@ -86,13 +86,13 @@ namespace FlatUI
 
 		public static void SetActionBarTheme(Activity context, FlatTheme theme, bool dark)
 		{
-			var color1 = theme.Color3;
-			var color2 = theme.Color2;
+			var color1 = theme.LightAccentColor;
+			var color2 = theme.BackgroundColor;
 
 			if (dark) 
 			{
-				color1 = theme.Color2;
-				color2 = theme.Color1;
+				color1 = theme.BackgroundColor;
+				color2 = theme.DarkAccentColor;
 			}
 
 			var front = new PaintDrawable(color1);

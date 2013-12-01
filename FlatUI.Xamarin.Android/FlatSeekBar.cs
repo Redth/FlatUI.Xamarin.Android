@@ -49,14 +49,14 @@ namespace FlatUI
 			}
 
 			// setting thumb
-			var thumb = new PaintDrawable(theme.Color1);
+			var thumb = new PaintDrawable(theme.DarkAccentColor);
 			thumb.SetCornerRadius(15);
 			thumb.SetIntrinsicWidth(30);
 			thumb.SetIntrinsicHeight(30);
 			SetThumb(thumb);
 
 			// progress
-			var progress = new PaintDrawable(theme.Color2);
+			var progress = new PaintDrawable(theme.BackgroundColor);
 			progress.SetCornerRadius(10);
 			progress.SetIntrinsicHeight(10);
 			progress.SetIntrinsicWidth(5);
@@ -64,13 +64,13 @@ namespace FlatUI
 			var progressClip = new ClipDrawable(progress, GravityFlags.Left, ClipDrawableOrientation.Horizontal);
 
 			// secondary progress
-			var secondary = new PaintDrawable(theme.Color3);
+			var secondary = new PaintDrawable(theme.LightAccentColor);
 			secondary.SetCornerRadius(10);
 			secondary.SetIntrinsicHeight(10);
 			var secondaryProgressClip = new ClipDrawable(secondary, GravityFlags.Left, ClipDrawableOrientation.Horizontal);
 
 			// background
-			PaintDrawable background = new PaintDrawable(theme.Color4);
+			PaintDrawable background = new PaintDrawable(theme.VeryLightAccentColor);
 			background.SetCornerRadius(10);
 			background.SetIntrinsicHeight(10);
 

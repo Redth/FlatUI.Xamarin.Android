@@ -63,16 +63,16 @@ namespace FlatUI
 			uncheckedEnabled.SetCornerRadius(radius);
 			uncheckedEnabled.SetSize(size, size);
 			uncheckedEnabled.SetColor(Color.Transparent);
-			uncheckedEnabled.SetStroke(border, theme.Color3);
+			uncheckedEnabled.SetStroke(border, theme.LightAccentColor);
 
 			// creating checked-enabled state drawable
 			GradientDrawable checkedOutside = new GradientDrawable();
 			checkedOutside.SetCornerRadius(radius);
 			checkedOutside.SetSize(size, size);
 			checkedOutside.SetColor(Color.Transparent);
-			checkedOutside.SetStroke(border, theme.Color3);
+			checkedOutside.SetStroke(border, theme.LightAccentColor);
 
-			PaintDrawable checkedCore = new PaintDrawable(theme.Color3);
+			PaintDrawable checkedCore = new PaintDrawable(theme.LightAccentColor);
 			checkedCore.SetCornerRadius(radius);
 			checkedCore.SetIntrinsicHeight(size);
 			checkedCore.SetIntrinsicWidth(size);
@@ -86,16 +86,16 @@ namespace FlatUI
 			uncheckedDisabled.SetCornerRadius(radius);
 			uncheckedDisabled.SetSize(size, size);
 			uncheckedDisabled.SetColor(Color.Transparent);
-			uncheckedDisabled.SetStroke(border, theme.Color4);
+			uncheckedDisabled.SetStroke(border, theme.VeryLightAccentColor);
 
 			// creating checked-disabled state drawable
 			GradientDrawable checkedOutsideDisabled = new GradientDrawable();
 			checkedOutsideDisabled.SetCornerRadius(radius);
 			checkedOutsideDisabled.SetSize(size, size);
 			checkedOutsideDisabled.SetColor(Color.Transparent);
-			checkedOutsideDisabled.SetStroke(border, theme.Color4);
+			checkedOutsideDisabled.SetStroke(border, theme.VeryLightAccentColor);
 
-			PaintDrawable checkedCoreDisabled = new PaintDrawable(theme.Color4);
+			PaintDrawable checkedCoreDisabled = new PaintDrawable(theme.VeryLightAccentColor);
 			checkedCoreDisabled.SetCornerRadius(radius);
 			checkedCoreDisabled.SetIntrinsicHeight(size);
 			checkedCoreDisabled.SetIntrinsicWidth(size);
@@ -114,7 +114,7 @@ namespace FlatUI
 
 			// setting padding for avoiding text to be appear on icon
 			SetPadding(size / 4 * 5, 0, 0, 0);
-			SetTextColor(theme.Color3);
+			SetTextColor(theme.LightAccentColor);
 
 			var typeface = FlatUI.GetFont(Context, fontId, fontWeight);
 			if (typeface != null) 

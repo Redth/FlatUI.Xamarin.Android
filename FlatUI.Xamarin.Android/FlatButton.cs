@@ -65,11 +65,11 @@ namespace FlatUI
 
 			// creating normal state drawable
 			var normalFront = new ShapeDrawable(new RoundRectShape(outerR, null, null));
-			normalFront.Paint.Color = theme.Color3;
+			normalFront.Paint.Color = theme.LightAccentColor;
 			normalFront.SetPadding(padding, padding, padding, padding);
 
 			var normalBack = new ShapeDrawable(new RoundRectShape(outerR, null, null));
-			normalBack.Paint.Color = theme.Color2;
+			normalBack.Paint.Color = theme.BackgroundColor;
 
 			if (isFullFlat) 
 				bottom = 0;
@@ -81,10 +81,10 @@ namespace FlatUI
 
 			// creating pressed state drawable
 			var pressedFront = new ShapeDrawable(new RoundRectShape(outerR, null, null));
-			pressedFront.Paint.Color = theme.Color2;
+			pressedFront.Paint.Color = theme.BackgroundColor;
 
 			var pressedBack = new ShapeDrawable(new RoundRectShape(outerR, null, null));
-			pressedBack.Paint.Color = theme.Color1;
+			pressedBack.Paint.Color = theme.DarkAccentColor;
 
 			if (!isFullFlat) 
 				pressedBack.SetPadding(0, 0, 0, 3);
@@ -94,10 +94,10 @@ namespace FlatUI
 
 			// creating disabled state drawable
 			var disabledFront = new ShapeDrawable(new RoundRectShape(outerR, null, null));
-			disabledFront.Paint.Color = theme.Color4;
+			disabledFront.Paint.Color = theme.VeryLightAccentColor;
 
 			var disabledBack = new ShapeDrawable(new RoundRectShape(outerR, null, null));
-			disabledBack.Paint.Color = theme.Color3;
+			disabledBack.Paint.Color = theme.LightAccentColor;
 			if (!isFullFlat) disabledBack.SetPadding(0, 0, 0, padding);
 
 			Drawable[] d3 = {disabledBack, disabledFront};
@@ -113,9 +113,9 @@ namespace FlatUI
 			SetBackgroundDrawable (states);
 
 			if (textAppearance == 1) 
-				SetTextColor(theme.Color1);
+				SetTextColor(theme.DarkAccentColor);
 			else if (textAppearance == 2) 
-				SetTextColor(theme.Color4);
+				SetTextColor(theme.VeryLightAccentColor);
 			else 
 				SetTextColor(Android.Graphics.Color.White);
 

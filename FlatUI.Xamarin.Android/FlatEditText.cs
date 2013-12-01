@@ -73,18 +73,18 @@ namespace FlatUI
 
 			if (style == 0) {             // flat
 				normalFront.Paint.Color = Color.Transparent;
-				normalBack.Paint.Color = theme.Color3;
-				SetTextColor(theme.Color4);
+				normalBack.Paint.Color = theme.LightAccentColor;
+				SetTextColor(theme.VeryLightAccentColor);
 
 			} else if (style == 1) {      // box
 				normalFront.Paint.Color = Color.White;
-				normalBack.Paint.Color = theme.Color3;
-				SetTextColor(theme.Color2);
+				normalBack.Paint.Color = theme.LightAccentColor;
+				SetTextColor(theme.BackgroundColor);
 
 			} else if (style == 2) {      // transparent
 				normalFront.Paint.Color = Color.Transparent;
 				normalBack.Paint.Color = Color.Transparent;
-				SetTextColor(theme.Color2);
+				SetTextColor(theme.BackgroundColor);
 			}
 
 			Drawable[] d = {normalBack, normalFront};
@@ -92,10 +92,10 @@ namespace FlatUI
 
 			SetBackgroundDrawable(normal);
 
-			SetHintTextColor(theme.Color4);
+			SetHintTextColor(theme.VeryLightAccentColor);
 
-			if (textAppearance == 1) SetTextColor(theme.Color1);
-			else if (textAppearance == 2) SetTextColor(theme.Color4);
+			if (textAppearance == 1) SetTextColor(theme.DarkAccentColor);
+			else if (textAppearance == 2) SetTextColor(theme.VeryLightAccentColor);
 
 			var typeface = FlatUI.GetFont(Context, fontId, fontWeight);
 			if (typeface != null)

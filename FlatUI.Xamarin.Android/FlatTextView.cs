@@ -64,16 +64,16 @@ namespace FlatUI
 
 			if (backgroundColor != -1)
 			{
-				var bgColor = theme.Color1;
+				var bgColor = theme.DarkAccentColor;
 
 				if (backgroundColor == 0)
-					bgColor = theme.Color1;
+					bgColor = theme.DarkAccentColor;
 				else if (backgroundColor == 1)
-					bgColor = theme.Color2;
+					bgColor = theme.BackgroundColor;
 				else if (backgroundColor == 2)
-					bgColor = theme.Color3;
+					bgColor = theme.LightAccentColor;
 				else if (backgroundColor == 3)
-					bgColor = theme.Color4;
+					bgColor = theme.VeryLightAccentColor;
 
 				GradientDrawable gradientDrawable = new GradientDrawable();
 				gradientDrawable.SetColor(bgColor);
@@ -82,16 +82,16 @@ namespace FlatUI
 			} 
 			else if (customBackgroundColor != -1) 
 			{
-				var bgColor = theme.Color1;
+				var bgColor = theme.DarkAccentColor;
 
 				if (customBackgroundColor == 0)
-					bgColor = theme.Color1;
+					bgColor = theme.DarkAccentColor;
 				else if (customBackgroundColor == 1)
-					bgColor = theme.Color2;
+					bgColor = theme.BackgroundColor;
 				else if (customBackgroundColor == 2)
-					bgColor = theme.Color3;
+					bgColor = theme.LightAccentColor;
 				else if (customBackgroundColor == 3)
-					bgColor = theme.Color4;
+					bgColor = theme.VeryLightAccentColor;
 
 				GradientDrawable gradientDrawable = new GradientDrawable();
 				gradientDrawable.SetColor(bgColor);
@@ -99,15 +99,15 @@ namespace FlatUI
 				SetBackgroundDrawable(gradientDrawable);
 			}
 
-			var txtColor = theme.Color4;
+			var txtColor = theme.VeryLightAccentColor;
 			if (textColor == 0)
-				txtColor = theme.Color1;
+				txtColor = theme.DarkAccentColor;
 			if (textColor == 1)
-				txtColor = theme.Color2;
+				txtColor = theme.BackgroundColor;
 			if (textColor == 2)
-				txtColor = theme.Color3;
+				txtColor = theme.LightAccentColor;
 			if (textColor == 3)
-				txtColor = theme.Color4;
+				txtColor = theme.VeryLightAccentColor;
 
 			SetTextColor(txtColor);
 
