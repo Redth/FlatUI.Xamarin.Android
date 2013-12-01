@@ -11,12 +11,13 @@ namespace FlatUI
 {
 	public class FlatToggleButton : ToggleButton
 	{
-		int fontId = (int)FlatUI.DefaultFontFamily;
-		int fontWeight = (int)FlatUI.DefaultFontWeight;
+		const int DEFAULT_PADDING = 5;
+		const int DEFAULT_SIZE = 0;
+
 		FlatTheme theme = FlatUI.DefaultTheme;
 
-		int padding = 5;
-		int size = 0;
+		int padding = DEFAULT_PADDING;
+		int size = DEFAULT_SIZE;
 
 		public FlatToggleButton(Context context) : base(context)
 		{
@@ -39,26 +40,33 @@ namespace FlatUI
 			set { theme = value; init (null); }
 		}
 
-		void init(IAttributeSet attrs) 
+		void init(IAttributeSet attrs)
 		{
-			if (attrs != null) 
+			if (attrs != null)
 			{
-				var a = Context.ObtainStyledAttributes(attrs, Resource.Styleable.FlatUI);
+				var a = Context.ObtainStyledAttributes (attrs, Resource.Styleable.FlatUI);
 
 				var themeName = a.GetString (Resource.Styleable.FlatUI_theme) ?? string.Empty;
 
 				theme = FlatUI.GetTheme (themeName);
 
-				size = a.GetDimensionPixelSize(Resource.Styleable.FlatUI_size, size);
+				size = a.GetDimensionPixelSize (Resource.Styleable.FlatUI_size, size);
 
-				fontId = a.GetInt(Resource.Styleable.FlatUI_fontFamily, fontId);
-				fontWeight = a.GetInt(Resource.Styleable.FlatUI_fontWeight, fontWeight);
-
-				a.Recycle();
+				a.Recycle ();
 			}
 
-			SetWidth(size * 5);
-			SetHeight(size);
+			SetTheme (this, theme, padding, size);
+		}
+
+		public static void SetTheme (ToggleButton toggleButton, FlatTheme theme)
+		{
+			SetTheme (toggleButton, theme, DEFAULT_PADDING, DEFAULT_SIZE);
+		}
+
+		public static void SetTheme (ToggleButton toggleButton, FlatTheme theme, int padding, int size)
+		{
+			toggleButton.SetWidth(size * 5);
+			toggleButton.SetHeight(size);
 
 			//setTextOff("");
 			//setTextOn("");
@@ -115,7 +123,7 @@ namespace FlatUI
 			Drawable[] d4 = {checkedDisabledBack, checkedDisabledFront};
 			LayerDrawable checkedDisabled = new LayerDrawable(d4);
 
-			SetPadding(0, padding, 0, padding);
+			toggleButton.SetPadding(0, padding, 0, padding);
 
 			PaintDrawable paintDrawable = new PaintDrawable(theme.BackgroundColor);
 			paintDrawable.SetIntrinsicHeight(size);
@@ -133,9 +141,9 @@ namespace FlatUI
 			states.AddState(new int[]{Android.Resource.Attribute.StateChecked, -Android.Resource.Attribute.StateEnabled},
 				new InsetDrawable(checkedDisabled, padding * 2));
 
-			SetBackgroundDrawable(states);
+			toggleButton.SetBackgroundDrawable(states);
 
-			SetTextSize(ComplexUnitType.Sp, 0);
+			toggleButton.SetTextSize(ComplexUnitType.Sp, 0);
 		}
 	}
 }

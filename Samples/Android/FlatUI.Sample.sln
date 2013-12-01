@@ -21,6 +21,6 @@ Global
 		{78B3367E-468D-4466-8D0C-85852E8874F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ..\..\FlatUI\FlatUI.csproj
+		StartupItem = FlatUI.Sample\FlatUI.Sample.csproj
 	EndGlobalSection
 EndGlobal

@@ -5,6 +5,8 @@ using Android.Graphics.Drawables;
 using Android.Graphics;
 using Android.Content;
 using System.Collections.Generic;
+using Android.Views;
+using Android.Widget;
 
 namespace FlatUI
 {
@@ -19,6 +21,7 @@ namespace FlatUI
 			DefaultTheme = FlatTheme.Blood();
 			DefaultFontWeight = FlatFontWeight.Regular;
 			DefaultFontFamily = FlatFontFamily.Roboto;
+			DefaultTextAppearance = FlatTextAppearance.Light;
 		}
 
 		static Dictionary<string, FlatTheme> stockThemes = new Dictionary<string, FlatTheme>() {
@@ -83,6 +86,7 @@ namespace FlatUI
 		public static FlatTheme DefaultTheme { get; set; }
 		public static FlatFontWeight DefaultFontWeight { get; set; }
 		public static FlatFontFamily DefaultFontFamily { get;set; }
+		public static FlatTextAppearance DefaultTextAppearance { get;set; }
 
 		public static void SetActionBarTheme(Activity context, FlatTheme theme, bool dark)
 		{
@@ -108,31 +112,90 @@ namespace FlatUI
 			actionBar.Title = actionBar.Title;
 		}
 
-		public static Typeface GetFont(Context context, int fontId, int weight)
+		public static void SetActivityTheme(Activity activity, FlatTheme theme) //, bool includeNormalViews)
+		{
+			ViewGroup vg = activity.FindViewById<View>(Android.Resource.Id.Content) as ViewGroup;
+
+			if (vg == null)
+				return;
+
+			SetThemeOnChildren(vg, theme, false);
+
+		}
+
+		static void SetThemeOnChildren(ViewGroup parentViewGroup, FlatTheme theme, bool includeNormalViews)
+		{
+
+			for (int i = 0; i < parentViewGroup.ChildCount; i++)
+			{
+				var view = parentViewGroup.GetChildAt (i);
+
+				if (view is FlatButton)
+					(view as FlatButton).Theme = theme;
+				else if (view is FlatCheckBox)
+					(view as FlatCheckBox).Theme = theme;
+				else if (view is FlatEditText)
+					(view as FlatEditText).Theme = theme;
+				else if (view is FlatRadioButton)
+					(view as FlatRadioButton).Theme = theme;
+				else if (view is FlatSeekBar)
+					(view as FlatSeekBar).Theme = theme;
+				else if (view is FlatTextView)
+					(view as FlatTextView).Theme = theme;
+				else if (view is FlatToggleButton)
+					(view as FlatToggleButton).Theme = theme;
+
+				//TODO: Need to add code for settheme static method
+				if (includeNormalViews)
+				{
+					if (view is CheckBox)
+						FlatCheckBox.SetTheme(view as CheckBox, theme);
+					else if (view is RadioButton)
+						FlatRadioButton.SetTheme(view as RadioButton, theme);
+					else if (view is ToggleButton)
+						FlatToggleButton.SetTheme(view as ToggleButton, theme);
+					else if (view is EditText)
+						FlatEditText.SetTheme(view as EditText, theme);
+					else if (view is TextView)
+						FlatTextView.SetTheme(view as TextView, theme);
+					else if (view is SeekBar)
+						FlatSeekBar.SetTheme(view as SeekBar, theme);
+					else if (view is Button)
+						FlatButton.SetTheme(view as Button, theme);
+				}
+
+				var childViewGroup = view as ViewGroup;
+
+				if (childViewGroup != null)
+					SetThemeOnChildren (childViewGroup, theme, includeNormalViews);
+			}
+		}
+
+		public static Typeface GetFont(Context context, FlatFontFamily fontFamily, FlatFontWeight weight)
 		{
 			var fontName = string.Empty;
 			var fontWeight = string.Empty;
 
-			if (fontId != 0) {
+			if (fontFamily != FlatFontFamily.DroidSans) {
 
-				if (fontId == 1) fontName = "opensans";
-				else if (fontId == 2) fontName = "roboto";
-				else if (fontId == 3) fontName = "comfortaa";
+				if (fontFamily == FlatFontFamily.OpenSans) fontName = "opensans";
+				else if (fontFamily == FlatFontFamily.Roboto) fontName = "roboto";
+				else if (fontFamily == FlatFontFamily.Comfortaa) fontName = "comfortaa";
 
 				switch (weight) {
-					case 0:
+					case FlatFontWeight.ExtraLight:
 						fontWeight = "extralight.ttf";
 						break;
-					case 1:
+					case FlatFontWeight.Light:
 						fontWeight = "light.ttf";
 						break;
-					case 2:
+					case FlatFontWeight.Regular:
 						fontWeight = "regular.ttf";
 						break;
-					case 3:
+					case FlatFontWeight.Bold:
 						fontWeight = "bold.ttf";
 						break;
-					case 4:
+					case FlatFontWeight.ExtraBold:
 						fontWeight = "extrabold.ttf";
 						break;
 				}

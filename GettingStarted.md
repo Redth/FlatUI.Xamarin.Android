@@ -1,39 +1,73 @@
-AndHUD
-=======
-By default AndHUD is accessible through the AndHUD.Shared static instance of the class.  You are also free to create an instance of AndHUD and use it yourself!  
+###Getting Started###
 
+To use FlatUI, all you need to do is replace some of your normal widgets with the FlatUI version
 
-Getting Started
----------------
-```csharp
-//Show a simple status message with an indeterminate spinner and a Clear background
-AndHUD.Shared.Show(myActivity, "Status Message", MaskType.Clear);
+Your normal button:
 
-//Show a progress with a filling circle representing the progress amount, showing 60% full
-AndHUD.Shared.ShowProgress(myActivity, "Loading… 60%", 60);
-
-//Show a success image with a message, with a Clear background, and auto-dismiss after 2 seconds
-AndHUD.Shared.ShowSuccess(myActivity, "It Worked!", MaskType.Clear, TimeSpan.FromSeconds(2));
-
-//Show an error image with a message with a Dimmed background, and auto-dismiss after 2 seconds
-AndHUD.Shared.ShowError(myActivity, "It no worked :(", MaskType.Black, TimeSpan.FromSeconds(2));
-
-//Show a toast, similar to Android toasts, but styled as AndHUD, with a clear background, auto-dismiss after 2 seconds
-AndHUD.Shared.ShowToast(myActivity, "This is a non-centered Toast…", MaskType.Clear, TimeSpan.FromSeconds(2));
-
-//Show a custom image with text
-AndHUD.Shared.ShowImage(myActivity, Resource.Drawable.MyCustomImage, "Custom");
-
-//Dismiss a HUD that will or will not be automatically timed out
-AndHUD.Shared.Dismiss(myActivity);
-
-//Show a HUD and only close it when it's clicked
-AndHUD.Shared.ShowToast(this, "Click this toast to close it!", MaskType.Clear, null, true, () => AndHUD.Shared.Dismiss(this));
+```xml
+<Button
+  android:id="@+id/buttonBlock"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content" />
 ```
 
-Other Options
--------------
- - **MaskType:** By default, MaskType.Black dims the background behind the HUD.  Use MaskType.Clear to prevent the dimming
- - **Timeout:** If you provide a timeout, the HUD will automatically be dismissed after the timeout elapses, if you have not already dismissed it manually.
- - **Click Callback:** If you provide a clickCallback parameter, when the HUD is tapped by the user, the action supplied will be executed.
+Now becomes:
+
+```xml
+<FlatUI.FlatButton
+  android:id="@+id/buttonBlock"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content" />
+```
+
+
+**NOTE:** FlatUI only works on Android 4.x+!
+
+###Changing Themes###
+
+You can set the theme a number of ways:
+
+ - Call `FlatUI.SetActivityTheme(FlatTheme.Sky());` to theme all controls the same in the activity
+ - Set the attribute on the widget in the layout file: `flatui:theme="sky"`
+ - Programmatically set each widget's theme: `myFlatButton.Theme = FlatTheme.Sky();`
+
+###FlatUI Widgets###
+
+There are a number of 'flat' versions of android widgets available that inherit from their normal counterparts:
+
+
+ - FlatEditText
+ - FlatTextView
+ - FlatToggleButton
+ - FlatRadioButton
+ - FlatCheckBox
+ - FlatSeekBar
+ - FlatButton
+ 
+
+###Custom Themes###
+
+It's very easy to make custom themes:
+
+```csharp
+//Create a custom theme very easily!
+var customJabbrTheme = new FlatUI.FlatTheme () {
+    DarkAccentColor = Android.Graphics.Color.ParseColor("#00103f"),
+    BackgroundColor = Android.Graphics.Color.ParseColor("#003259"),
+    LightAccentColor = Android.Graphics.Color.ParseColor("#005191"),
+    VeryLightAccentColor = Android.Graphics.Color.ParseColor("#719fc3")
+};
+
+//Set your theme programmatically
+FlatUI.SetActivityTheme(this, customJabbrTheme);
+```
+
+
+###ActionBar###
+
+Finally, the ActionBar can also be themed:
+
+```csharp
+FlatUI.FlatUI.SetActionBarTheme (this, FlatUI.FlatUI.DefaultTheme, false);
+```
 

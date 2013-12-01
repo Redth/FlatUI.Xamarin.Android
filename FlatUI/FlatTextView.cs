@@ -11,14 +11,21 @@ namespace FlatUI
 {
 	public class FlatTextView : TextView
 	{
-		int fontId = (int)FlatUI.DefaultFontFamily;
-		int fontWeight = (int)FlatUI.DefaultFontWeight;
 		FlatTheme theme = FlatUI.DefaultTheme;
 
-		int textColor = 2;
-		int backgroundColor = -1;
-		int customBackgroundColor = -1;
-		int cornerRadius = 5;
+		const int DEFAULT_TEXTCOLOR = 2;
+		const int DEFAULT_BACKGROUNDCOLOR = -1;
+		const int DEFAULT_CUSTOMBACKGROUNDCOLOR = -1;
+		const int DEFAULT_CORNERRADIUS = 5;
+
+		FlatUI.FlatFontFamily fontFamily = FlatUI.DefaultFontFamily;
+		FlatUI.FlatFontWeight fontWeight = FlatUI.DefaultFontWeight;
+
+		int textColor = DEFAULT_TEXTCOLOR;
+		int backgroundColor = DEFAULT_BACKGROUNDCOLOR;
+		int customBackgroundColor = DEFAULT_CUSTOMBACKGROUNDCOLOR;
+		int cornerRadius = DEFAULT_CORNERRADIUS;
+
 
 		public FlatTextView(Context context) : base(context)
 		{
@@ -41,26 +48,43 @@ namespace FlatUI
 			set { theme = value; init (null); }
 		}
 
-		void init(IAttributeSet attrs) 
+		void init(IAttributeSet attrs)
 		{
-			if (attrs != null) 
+			if (attrs != null)
 			{
-				var a = Context.ObtainStyledAttributes(attrs, Resource.Styleable.FlatUI);
+				var a = Context.ObtainStyledAttributes (attrs, Resource.Styleable.FlatUI);
 
 				var themeName = a.GetString (Resource.Styleable.FlatUI_theme) ?? string.Empty;
 
 				theme = FlatUI.GetTheme (themeName);
 
-				textColor = a.GetInt(Resource.Styleable.FlatUI_textColor, textColor);
-				backgroundColor = a.GetInt(Resource.Styleable.FlatUI_backgroundColor, backgroundColor);
-				customBackgroundColor = a.GetInt(Resource.Styleable.FlatUI_customBackgroundColor, customBackgroundColor);
-				cornerRadius = a.GetInt(Resource.Styleable.FlatUI_cornerRadius, cornerRadius);
+				textColor = a.GetInt (Resource.Styleable.FlatUI_textColor, textColor);
+				backgroundColor = a.GetInt (Resource.Styleable.FlatUI_backgroundColor, backgroundColor);
+				customBackgroundColor = a.GetInt (Resource.Styleable.FlatUI_customBackgroundColor, customBackgroundColor);
+				cornerRadius = a.GetInt (Resource.Styleable.FlatUI_cornerRadius, cornerRadius);
 
-				fontId = a.GetInt(Resource.Styleable.FlatUI_fontFamily, fontId);
-				fontWeight = a.GetInt(Resource.Styleable.FlatUI_fontWeight, fontWeight);
+				Enum.TryParse<FlatUI.FlatFontFamily> (
+					a.GetInt (Resource.Styleable.FlatUI_fontFamily, (int)fontFamily).ToString (), out fontFamily);
+				Enum.TryParse<FlatUI.FlatFontWeight> (
+					a.GetInt (Resource.Styleable.FlatUI_fontWeight, (int)fontWeight).ToString (), out fontWeight);
 
-				a.Recycle();
+				a.Recycle ();
 			}
+
+			SetTheme (this, theme, fontFamily, fontWeight, textColor, backgroundColor, customBackgroundColor, cornerRadius);
+
+		}
+
+		public static void SetTheme(TextView textView, FlatTheme theme)
+		{
+			SetTheme (textView, theme, FlatUI.DefaultFontFamily, FlatUI.DefaultFontWeight,
+				DEFAULT_TEXTCOLOR, DEFAULT_BACKGROUNDCOLOR, DEFAULT_CUSTOMBACKGROUNDCOLOR, DEFAULT_CORNERRADIUS);
+		}
+
+		public static void SetTheme(TextView textView, FlatTheme theme,
+			FlatUI.FlatFontFamily fontFamily, FlatUI.FlatFontWeight fontWeight, int textColor, int backgroundColor,
+			int customBackgroundColor, int cornerRadius)
+		{
 
 			if (backgroundColor != -1)
 			{
@@ -78,7 +102,7 @@ namespace FlatUI
 				GradientDrawable gradientDrawable = new GradientDrawable();
 				gradientDrawable.SetColor(bgColor);
 				gradientDrawable.SetCornerRadius(cornerRadius);
-				SetBackgroundDrawable(gradientDrawable);
+				textView.SetBackgroundDrawable(gradientDrawable);
 			} 
 			else if (customBackgroundColor != -1) 
 			{
@@ -96,7 +120,7 @@ namespace FlatUI
 				GradientDrawable gradientDrawable = new GradientDrawable();
 				gradientDrawable.SetColor(bgColor);
 				gradientDrawable.SetCornerRadius(cornerRadius);
-				SetBackgroundDrawable(gradientDrawable);
+				textView.SetBackgroundDrawable(gradientDrawable);
 			}
 
 			var txtColor = theme.VeryLightAccentColor;
@@ -109,11 +133,11 @@ namespace FlatUI
 			if (textColor == 3)
 				txtColor = theme.VeryLightAccentColor;
 
-			SetTextColor(txtColor);
+			textView.SetTextColor(txtColor);
 
-			var typeface = FlatUI.GetFont(Context, fontId, fontWeight);
+			var typeface = FlatUI.GetFont(textView.Context, fontFamily, fontWeight);
 			if (typeface != null)
-				SetTypeface(typeface, TypefaceStyle.Normal);
+				textView.SetTypeface(typeface, TypefaceStyle.Normal);
 		}
 	}
 }

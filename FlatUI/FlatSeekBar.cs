@@ -35,25 +35,30 @@ namespace FlatUI
 			set { theme = value; init (null); }
 		}
 
-		void init(IAttributeSet attrs) 
+		void init(IAttributeSet attrs)
 		{
-			if (attrs != null) 
+			if (attrs != null)
 			{
-				var a = Context.ObtainStyledAttributes(attrs, Resource.Styleable.FlatUI);
+				var a = Context.ObtainStyledAttributes (attrs, Resource.Styleable.FlatUI);
 
 				var themeName = a.GetString (Resource.Styleable.FlatUI_theme) ?? string.Empty;
 
 				theme = FlatUI.GetTheme (themeName);
 
-				a.Recycle();
+				a.Recycle ();
 			}
 
+			SetTheme (this, theme);
+		}
+
+		public static void SetTheme(SeekBar seekBar, FlatTheme theme)
+		{
 			// setting thumb
 			var thumb = new PaintDrawable(theme.DarkAccentColor);
 			thumb.SetCornerRadius(15);
 			thumb.SetIntrinsicWidth(30);
 			thumb.SetIntrinsicHeight(30);
-			SetThumb(thumb);
+			seekBar.SetThumb(thumb);
 
 			// progress
 			var progress = new PaintDrawable(theme.BackgroundColor);
@@ -75,7 +80,7 @@ namespace FlatUI
 			background.SetIntrinsicHeight(10);
 
 			// applying drawable
-			LayerDrawable ld = (LayerDrawable) ProgressDrawable;
+			LayerDrawable ld = (LayerDrawable) seekBar.ProgressDrawable;
 			ld.SetDrawableByLayerId(Android.Resource.Id.Background, background);
 			ld.SetDrawableByLayerId(Android.Resource.Id.Progress, progressClip);
 			ld.SetDrawableByLayerId(Android.Resource.Id.SecondaryProgress, secondaryProgressClip);

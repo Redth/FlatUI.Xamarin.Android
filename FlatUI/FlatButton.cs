@@ -10,14 +10,18 @@ namespace FlatUI
 {
 	public class FlatButton : Button
 	{
-		int fontId = (int)FlatUI.DefaultFontFamily;
-		int fontWeight = (int)FlatUI.DefaultFontWeight;
+		const int DEFAULT_RADIUS = 5;
+		const int DEFAULT_PADDING = 10;
+		const bool DEFAULT_ISFULLFLAT = false;
+
 		FlatTheme theme = FlatUI.DefaultTheme;
-		int radius = 5;
-		int bottom = 5;
-		int padding = 10;
-		int textAppearance = 1;
-		bool isFullFlat = false;
+
+		int radius = DEFAULT_RADIUS;
+		int padding = DEFAULT_PADDING;
+		bool isFullFlat = DEFAULT_ISFULLFLAT;
+		FlatUI.FlatFontFamily fontFamily = FlatUI.DefaultFontFamily;
+		FlatUI.FlatFontWeight fontWeight = FlatUI.DefaultFontWeight;
+		FlatUI.FlatTextAppearance textAppearance = FlatUI.DefaultTextAppearance;
 
 		public FlatButton(Context context) : base(context)
 		{
@@ -50,16 +54,33 @@ namespace FlatUI
 
 				theme = FlatUI.GetTheme (themeName);
 
-				textAppearance = a.GetInt(Resource.Styleable.FlatUI_textAppearance, textAppearance);
 				padding = a.GetDimensionPixelSize(Resource.Styleable.FlatUI_textPadding, padding);
 				radius = a.GetDimensionPixelSize(Resource.Styleable.FlatUI_cornerRadius, radius);
 				isFullFlat = a.GetBoolean(Resource.Styleable.FlatUI_isFullFlat, isFullFlat);
 
-				fontId = a.GetInt(Resource.Styleable.FlatUI_fontFamily, fontId);
-				fontWeight = a.GetInt(Resource.Styleable.FlatUI_fontWeight, fontWeight);
+				Enum.TryParse<FlatUI.FlatTextAppearance> (
+					a.GetInt(Resource.Styleable.FlatUI_textAppearance, (int)textAppearance).ToString(), out textAppearance);
+				Enum.TryParse<FlatUI.FlatFontFamily>(
+					a.GetInt(Resource.Styleable.FlatUI_fontFamily, (int)fontFamily).ToString(), out fontFamily);
+				Enum.TryParse<FlatUI.FlatFontWeight>(
+					a.GetInt(Resource.Styleable.FlatUI_fontWeight, (int)fontWeight).ToString(), out fontWeight);
 
 				a.Recycle();
 			}
+
+			SetTheme (this, theme, textAppearance, fontFamily, fontWeight, isFullFlat, padding, radius);
+		}
+
+		public static void SetTheme(Button button, FlatTheme theme)
+		{
+			SetTheme (button, theme, FlatUI.DefaultTextAppearance, FlatUI.DefaultFontFamily, FlatUI.DefaultFontWeight, 
+				DEFAULT_ISFULLFLAT, DEFAULT_PADDING, DEFAULT_RADIUS);
+		}
+
+		public static void SetTheme(Button button, FlatTheme theme, FlatUI.FlatTextAppearance textAppearance,
+			FlatUI.FlatFontFamily fontFamily, FlatUI.FlatFontWeight fontWeight, bool isFullFlat, int padding, int radius)
+		{
+			var bottom = 5;
 
 			float[] outerR = {radius, radius, radius, radius, radius, radius, radius, radius};
 
@@ -110,18 +131,18 @@ namespace FlatUI
 			states.AddState(new []{ Android.Resource.Attribute.StateEnabled }, normal);
 			states.AddState(new []{-Android.Resource.Attribute.StateEnabled}, disabled);
 
-			SetBackgroundDrawable (states);
+			button.SetBackgroundDrawable (states);
 
-			if (textAppearance == 1) 
-				SetTextColor(theme.DarkAccentColor);
-			else if (textAppearance == 2) 
-				SetTextColor(theme.VeryLightAccentColor);
+			if (textAppearance == FlatUI.FlatTextAppearance.Dark) 
+				button.SetTextColor(theme.DarkAccentColor);
+			else if (textAppearance == FlatUI.FlatTextAppearance.Light) 
+				button.SetTextColor(theme.VeryLightAccentColor);
 			else 
-				SetTextColor(Android.Graphics.Color.White);
+				button.SetTextColor(Android.Graphics.Color.White);
 
-			var typeface = FlatUI.GetFont(Context, fontId, fontWeight);
+			var typeface = FlatUI.GetFont(button.Context, fontFamily, fontWeight);
 			if (typeface != null)
-				SetTypeface(typeface, Android.Graphics.TypefaceStyle.Normal);
+				button.SetTypeface(typeface, Android.Graphics.TypefaceStyle.Normal);
 		}
 	}
 }

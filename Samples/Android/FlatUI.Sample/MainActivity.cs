@@ -12,15 +12,6 @@ namespace Sample
 	[Activity (Label = "FlatUI.Xamarin Sample", MainLauncher = true)]
 	public class MainActivity : Activity
 	{
-		FlatEditText edittextFlat;
-		FlatEditText edittextFlat2;
-		FlatSeekBar seekbar;
-		FlatButton buttonBlock;
-		FlatButton buttonFlat;
-		FlatCheckBox checkboxUncheckedEnabled;
-		FlatRadioButton radioUncheckedDisabled;
-		FlatToggleButton toggleUncheckedEnabled;
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -34,17 +25,6 @@ namespace Sample
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
-
-			//Wire up our flatui views
-			edittextFlat = FindViewById<FlatEditText> (Resource.Id.edittextFlat);
-			edittextFlat2 = FindViewById<FlatEditText> (Resource.Id.edittextFlat2);
-			seekbar = FindViewById<FlatSeekBar> (Resource.Id.seekbar);
-			buttonBlock = FindViewById<FlatButton> (Resource.Id.buttonBlock);
-			buttonFlat = FindViewById<FlatButton> (Resource.Id.buttonFlat);
-			checkboxUncheckedEnabled = FindViewById<FlatCheckBox> (Resource.Id.checkboxUncheckedEnabled);
-			radioUncheckedDisabled = FindViewById<FlatRadioButton> (Resource.Id.radioUncheckedDisabled);
-			toggleUncheckedEnabled = FindViewById<FlatToggleButton> (Resource.Id.toggleUncheckedEnabled);
-
 
 			//Create a custom theme very easily!
 			var customJabbrTheme = new FlatUI.FlatTheme () {
@@ -67,16 +47,8 @@ namespace Sample
 			FlatUI.FlatUI.DefaultTheme = theme;
 			//Change the action bar
 			FlatUI.FlatUI.SetActionBarTheme (this, FlatUI.FlatUI.DefaultTheme, false);
-
-			//Set the theme on all existing controls
-			edittextFlat.Theme = theme;
-			edittextFlat2.Theme = theme;
-			seekbar.Theme = theme;
-			buttonBlock.Theme = theme;
-			buttonFlat.Theme = theme;
-			checkboxUncheckedEnabled.Theme = theme;
-			radioUncheckedDisabled.Theme = theme;
-			toggleUncheckedEnabled.Theme = theme;
+			//Change the activity theme
+			FlatUI.FlatUI.SetActivityTheme (this, theme);
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)

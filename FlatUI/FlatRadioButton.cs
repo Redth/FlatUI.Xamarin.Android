@@ -11,12 +11,16 @@ namespace FlatUI
 {
 	public class FlatRadioButton : RadioButton
 	{
-		int fontId = (int)FlatUI.DefaultFontFamily;
-		int fontWeight = (int)FlatUI.DefaultFontWeight;
 		FlatTheme theme = FlatUI.DefaultTheme;
-		int radius = 3;
-		int border = 5;
-		int size = 34;
+		const int DEFAULT_RADIUS = 3;
+		const int DEFAULT_BORDER = 5;
+		const int DEFAULT_SIZE = 34;
+
+		FlatUI.FlatFontFamily fontFamily = FlatUI.DefaultFontFamily;
+		FlatUI.FlatFontWeight fontWeight = FlatUI.DefaultFontWeight;
+		int radius = DEFAULT_RADIUS;
+		int border = DEFAULT_BORDER;
+		int size = DEFAULT_SIZE;
 
 		public FlatRadioButton(Context context) : base(context)
 		{
@@ -39,24 +43,38 @@ namespace FlatUI
 			set { theme = value; init (null); }
 		}
 
-		void init(IAttributeSet attrs) 
+		void init(IAttributeSet attrs)
 		{
-			if (attrs != null) 
+			if (attrs != null)
 			{
-				var a = Context.ObtainStyledAttributes(attrs, Resource.Styleable.FlatUI);
+				var a = Context.ObtainStyledAttributes (attrs, Resource.Styleable.FlatUI);
 
 				var themeName = a.GetString (Resource.Styleable.FlatUI_theme) ?? string.Empty;
 
 				theme = FlatUI.GetTheme (themeName);
 
-				radius = a.GetDimensionPixelSize(Resource.Styleable.FlatUI_cornerRadius, radius);
-				size = a.GetDimensionPixelSize(Resource.Styleable.FlatUI_size, size);
+				radius = a.GetDimensionPixelSize (Resource.Styleable.FlatUI_cornerRadius, radius);
+				size = a.GetDimensionPixelSize (Resource.Styleable.FlatUI_size, size);
 
-				fontId = a.GetInt(Resource.Styleable.FlatUI_fontFamily, fontId);
-				fontWeight = a.GetInt(Resource.Styleable.FlatUI_fontWeight, fontWeight);
+				Enum.TryParse<FlatUI.FlatFontFamily> (
+					a.GetInt (Resource.Styleable.FlatUI_fontFamily, (int)fontFamily).ToString (), out fontFamily);
+				Enum.TryParse<FlatUI.FlatFontWeight> (
+					a.GetInt (Resource.Styleable.FlatUI_fontWeight, (int)fontWeight).ToString (), out fontWeight);
 
-				a.Recycle();
+				a.Recycle ();
 			}
+
+			SetTheme (this, theme, fontFamily, fontWeight, radius, size, border);
+		}
+
+		public static void SetTheme(RadioButton radioButton, FlatTheme theme)
+		{
+			SetTheme(radioButton, theme, FlatUI.DefaultFontFamily, FlatUI.DefaultFontWeight, DEFAULT_RADIUS, DEFAULT_SIZE, DEFAULT_BORDER);
+		}
+
+		public static void SetTheme(RadioButton radioButton, FlatTheme theme, 
+			FlatUI.FlatFontFamily fontFamily, FlatUI.FlatFontWeight fontWeight,	int radius, int size, int border)
+		{
 
 			// creating unchecked-enabled state drawable
 			GradientDrawable uncheckedEnabled = new GradientDrawable();
@@ -76,7 +94,7 @@ namespace FlatUI
 			checkedCore.SetCornerRadius(radius);
 			checkedCore.SetIntrinsicHeight(size);
 			checkedCore.SetIntrinsicWidth(size);
-			InsetDrawable checkedInside = new InsetDrawable(checkedCore, border + 2, border + 2, border + 2, border + 2);
+			var checkedInside = new InsetDrawable(checkedCore, border + 2, border + 2, border + 2, border + 2);
 
 			Drawable[] checkedEnabledDrawable = {checkedOutside, checkedInside};
 			LayerDrawable checkedEnabled = new LayerDrawable(checkedEnabledDrawable);
@@ -110,15 +128,15 @@ namespace FlatUI
 			states.AddState(new int[]{Android.Resource.Attribute.StateChecked, Android.Resource.Attribute.StateEnabled}, checkedEnabled);
 			states.AddState(new int[]{-Android.Resource.Attribute.StateChecked, -Android.Resource.Attribute.StateEnabled}, uncheckedDisabled);
 			states.AddState(new int[]{Android.Resource.Attribute.StateChecked, -Android.Resource.Attribute.StateEnabled}, checkedDisabled);
-			SetButtonDrawable(states);
+			radioButton.SetButtonDrawable(states);
 
 			// setting padding for avoiding text to be appear on icon
-			SetPadding(size / 4 * 5, 0, 0, 0);
-			SetTextColor(theme.LightAccentColor);
+			radioButton.SetPadding(size / 4 * 5, 0, 0, 0);
+			radioButton.SetTextColor(theme.LightAccentColor);
 
-			var typeface = FlatUI.GetFont(Context, fontId, fontWeight);
+			var typeface = FlatUI.GetFont(radioButton.Context, fontFamily, fontWeight);
 			if (typeface != null) 
-				SetTypeface(typeface, TypefaceStyle.Normal);
+				radioButton.SetTypeface(typeface, TypefaceStyle.Normal);
 		}
 	}
 }
