@@ -5,16 +5,18 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{02B4553F-ADF4-4AED-89CD-8C605D3AFD63}</ProjectGuid>
+    <ProjectGuid>{78B3367E-468D-4466-8D0C-85852E8874F7}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{F278D4AB-4730-4720-B08E-FE5E31564D9E};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>FlatUI</RootNamespace>
+    <RootNamespace>Sample</RootNamespace>
+    <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <AssemblyName>FlatUI.Xamarin.Android</AssemblyName>
+    <AssemblyName>Sample</AssemblyName>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -45,44 +47,25 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
-    <Compile Include="FlatUI.cs" />
-    <Compile Include="FlatButton.cs" />
-    <Compile Include="FlatTheme.cs" />
-    <Compile Include="FlatCheckBox.cs" />
-    <Compile Include="FlatEditText.cs" />
-    <Compile Include="FlatRadioButton.cs" />
-    <Compile Include="FlatTextView.cs" />
-    <Compile Include="FlatToggleButton.cs" />
-    <Compile Include="FlatSeekBar.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
-    <AndroidResource Include="Resources\values\attrs.xml" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="assets\" />
-    <Folder Include="assets\fonts\" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidAsset Include="assets\fonts\comfortaa_bold.ttf" />
-    <AndroidAsset Include="assets\fonts\comfortaa_extrabold.ttf" />
-    <AndroidAsset Include="assets\fonts\comfortaa_extralight.ttf" />
-    <AndroidAsset Include="assets\fonts\comfortaa_light.ttf" />
-    <AndroidAsset Include="assets\fonts\comfortaa_regular.ttf" />
-    <AndroidAsset Include="assets\fonts\opensans_bold.ttf" />
-    <AndroidAsset Include="assets\fonts\opensans_extrabold.ttf" />
-    <AndroidAsset Include="assets\fonts\opensans_extralight.ttf" />
-    <AndroidAsset Include="assets\fonts\opensans_light.ttf" />
-    <AndroidAsset Include="assets\fonts\opensans_regular.ttf" />
-    <AndroidAsset Include="assets\fonts\roboto_bold.ttf" />
-    <AndroidAsset Include="assets\fonts\roboto_extrabold.ttf" />
-    <AndroidAsset Include="assets\fonts\roboto_extralight.ttf" />
-    <AndroidAsset Include="assets\fonts\roboto_light.ttf" />
-    <AndroidAsset Include="assets\fonts\roboto_regular.ttf" />
+    <ProjectReference Include="..\..\..\FlatUI\FlatUI.csproj">
+      <Project>{02B4553F-ADF4-4AED-89CD-8C605D3AFD63}</Project>
+      <Name>FlatUI</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

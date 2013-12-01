@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatUI.Xamarin.Android", "FlatUI.Xamarin.Android\FlatUI.Xamarin.Android.csproj", "{02B4553F-ADF4-4AED-89CD-8C605D3AFD63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatUI", "..\..\FlatUI\FlatUI.csproj", "{02B4553F-ADF4-4AED-89CD-8C605D3AFD63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample", "Samples\Android\Sample\Sample.csproj", "{78B3367E-468D-4466-8D0C-85852E8874F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatUI.Sample", "FlatUI.Sample\FlatUI.Sample.csproj", "{78B3367E-468D-4466-8D0C-85852E8874F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,6 @@ Global
 		{78B3367E-468D-4466-8D0C-85852E8874F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Samples\Android\Sample\Sample.csproj
+		StartupItem = ..\..\FlatUI\FlatUI.csproj
 	EndGlobalSection
 EndGlobal
