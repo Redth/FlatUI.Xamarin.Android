@@ -130,6 +130,9 @@ namespace FlatUI
 			{
 				var view = parentViewGroup.GetChildAt (i);
 
+				
+				var vtype = view.GetType ();
+
 				if (view is FlatButton)
 					(view as FlatButton).Theme = theme;
 				else if (view is FlatCheckBox)
@@ -148,19 +151,19 @@ namespace FlatUI
 				//TODO: Need to add code for settheme static method
 				if (includeNormalViews)
 				{
-					if (view is CheckBox)
+					if (vtype == typeof(CheckBox))
 						FlatCheckBox.SetTheme(view as CheckBox, theme);
-					else if (view is RadioButton)
+					else if (vtype == typeof(RadioButton))
 						FlatRadioButton.SetTheme(view as RadioButton, theme);
-					else if (view is ToggleButton)
+					else if (vtype == typeof(ToggleButton))
 						FlatToggleButton.SetTheme(view as ToggleButton, theme);
-					else if (view is EditText)
+					else if (vtype == typeof(EditText))
 						FlatEditText.SetTheme(view as EditText, theme);
-					else if (view is TextView)
+					else if (vtype == typeof(TextView))
 						FlatTextView.SetTheme(view as TextView, theme);
-					else if (view is SeekBar)
+					else if (vtype == typeof(SeekBar))
 						FlatSeekBar.SetTheme(view as SeekBar, theme);
-					else if (view is Button)
+					else if (vtype == typeof(Button))
 						FlatButton.SetTheme(view as Button, theme);
 				}
 
