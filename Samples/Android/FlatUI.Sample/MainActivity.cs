@@ -24,7 +24,7 @@ namespace Sample
 			ActionBar.SetIcon (Android.Resource.Drawable.IcMenuInfoDetails);
 
 			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
+			SetContentView (Resource.Layout.NormalMain);
 
 			//Create a custom theme very easily!
 			var customJabbrTheme = new FlatUI.FlatTheme () {

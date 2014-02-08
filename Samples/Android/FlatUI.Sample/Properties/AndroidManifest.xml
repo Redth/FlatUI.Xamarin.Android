@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="Sample.Sample">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.flatui.Sample">
 	<uses-sdk android:minSdkVersion="14" />
 	<application android:label="Sample" android:theme="@android:style/Theme.Holo.Light">
 	</application>
